@@ -43,36 +43,53 @@ impl Application {
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
         let mut fonts = egui::FontDefinitions::default();
 
-        let regular_font =
-            egui::FontData::from_static(include_bytes!("../assets/DINishExpanded-Regular.ttf"));
+        let tweak = egui::FontTweak {
+            scale: 0.9,
+            ..Default::default()
+        };
+
+        let mut regular_font =
+            egui::FontData::from_static(include_bytes!("../assets/OpenSans-Regular.ttf"));
+
+        regular_font.tweak = tweak;
 
         fonts
             .font_data
-            .insert("DINishExpanded-Regular".to_owned(), regular_font.into());
+            .insert("OpenSans-Regular".to_owned(), regular_font.into());
 
-        let bold_font =
-            egui::FontData::from_static(include_bytes!("../assets/DINishExpanded-Black.ttf"));
+        let mut bold_font = egui::FontData::from_static(include_bytes!("../assets/OpenSans-Bold.ttf"));
+
+        bold_font.tweak = tweak;
 
         fonts
             .font_data
-            .insert("DINishExpanded-Black".to_owned(), bold_font.into());
+            .insert("OpenSans-Bold".to_owned(), bold_font.into());
 
         fonts
             .families
             .entry(egui::FontFamily::Proportional)
             .or_default()
-            .insert(0, "DINishExpanded-Regular".to_owned());
+            .insert(0, "OpenSans-Regular".to_owned());
 
         let mut new_family = BTreeMap::new();
 
         new_family.insert(
-            egui::FontFamily::Name("DINishExpanded-Black".into()),
-            vec!["DINishExpanded-Black".to_owned()],
+            egui::FontFamily::Name("OpenSans-Bold".into()),
+            vec!["OpenSans-Bold".to_owned()],
         );
 
         fonts.families.append(&mut new_family);
 
         cc.egui_ctx.set_fonts(fonts);
+
+        let mut style = (*cc.egui_ctx.style()).clone();
+
+        style.text_styles.insert(
+            egui::TextStyle::Heading,
+            egui::FontId::new(16.0, egui::FontFamily::Proportional),
+        );
+
+        cc.egui_ctx.set_style(style);
 
         if let Some(storage) = cc.storage {
             return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
