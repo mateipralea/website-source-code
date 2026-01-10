@@ -15,8 +15,8 @@ pub fn main_window(app: &mut Application, ctx: &egui::Context) {
             .id(egui::Id::new("main_window"))
             .collapsible(false)
             .resizable(false)
-            .fixed_size([300., 110.])
-            .min_size([300., 110.])
+            .fixed_size([300., 105.])
+            .min_size([300., 105.])
             .show(ctx, |ui| main_window_ui(app, ui));
     }
 }

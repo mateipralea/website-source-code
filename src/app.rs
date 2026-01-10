@@ -49,33 +49,33 @@ impl Application {
         };
 
         let mut regular_font =
-            egui::FontData::from_static(include_bytes!("../assets/OpenSans-Regular.ttf"));
+            egui::FontData::from_static(include_bytes!("../assets/DINishExpanded-Regular.ttf"));
 
         regular_font.tweak = tweak;
 
         fonts
             .font_data
-            .insert("OpenSans-Regular".to_owned(), regular_font.into());
+            .insert("DINishExpanded-Regular".to_owned(), regular_font.into());
 
-        let mut bold_font = egui::FontData::from_static(include_bytes!("../assets/OpenSans-Bold.ttf"));
+        let mut bold_font = egui::FontData::from_static(include_bytes!("../assets/DINishExpanded-Black.ttf"));
 
         bold_font.tweak = tweak;
 
         fonts
             .font_data
-            .insert("OpenSans-Bold".to_owned(), bold_font.into());
+            .insert("DINishExpanded-Black".to_owned(), bold_font.into());
 
         fonts
             .families
             .entry(egui::FontFamily::Proportional)
             .or_default()
-            .insert(0, "OpenSans-Regular".to_owned());
+            .insert(0, "DINishExpanded-Regular".to_owned());
 
         let mut new_family = BTreeMap::new();
 
         new_family.insert(
-            egui::FontFamily::Name("OpenSans-Bold".into()),
-            vec!["OpenSans-Bold".to_owned()],
+            egui::FontFamily::Name("DINishExpanded-Black".into()),
+            vec!["DINishExpanded-Black".to_owned()],
         );
 
         fonts.families.append(&mut new_family);
