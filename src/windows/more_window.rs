@@ -14,7 +14,7 @@ pub enum MoreWindowTab {
 }
 
 pub fn more_window(app: &mut Application, ctx: &egui::Context) {
-    egui::Window::new(app.language.more_about_me())
+    egui::Window::new(app.language_configuration.get_raw().more_about_me())
         .id(egui::Id::new("more_window"))
         .collapsible(false)
         .resizable(false)
@@ -26,7 +26,9 @@ pub fn more_window(app: &mut Application, ctx: &egui::Context) {
                 if ui
                     .selectable_label(
                         app.window_configuration.more_window_tab == MoreWindowTab::Programming,
-                        app.language.more_window_programming_tab(),
+                        app.language_configuration
+                            .get_raw()
+                            .more_window_programming_tab(),
                     )
                     .clicked()
                 {
@@ -36,7 +38,9 @@ pub fn more_window(app: &mut Application, ctx: &egui::Context) {
                 if ui
                     .selectable_label(
                         app.window_configuration.more_window_tab == MoreWindowTab::OtherInterests,
-                        app.language.more_window_other_interests_tab(),
+                        app.language_configuration
+                            .get_raw()
+                            .more_window_other_interests_tab(),
                     )
                     .clicked()
                 {
@@ -49,12 +53,20 @@ pub fn more_window(app: &mut Application, ctx: &egui::Context) {
             match app.window_configuration.more_window_tab {
                 MoreWindowTab::Programming => {
                     ui.with_layout(egui::Layout::top_down(egui::Align::Min), |ui| {
-                        ui.label(app.language.more_window_programming_text());
+                        ui.label(
+                            app.language_configuration
+                                .get_raw()
+                                .more_window_programming_text(),
+                        );
                     });
                 }
                 MoreWindowTab::OtherInterests => {
                     ui.with_layout(egui::Layout::top_down(egui::Align::Min), |ui| {
-                        ui.label(app.language.more_window_other_interests_text());
+                        ui.label(
+                            app.language_configuration
+                                .get_raw()
+                                .more_window_other_interests_text(),
+                        );
                     });
                 }
             }

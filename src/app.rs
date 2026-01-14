@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::extra_impl::extra_ctx_impl::ExtraCtxImpl;
 use crate::font_setup::setup_fonts;
-use crate::language::Language;
+use crate::language::{LanguageConfiguration, get_browser_language_preference};
 use crate::windows::about_window::about_window;
 use crate::windows::main_window::main_window;
 use crate::windows::more_window::{MoreWindowTab, more_window};
@@ -17,7 +17,8 @@ use crate::windows::top_panel::top_panel;
 #[serde(default)]
 pub struct Application {
     pub window_configuration: WindowConfiguration,
-    pub language: Language,
+    pub language_configuration: LanguageConfiguration,
+    pub language_code: String,
 }
 
 #[derive(Default, Deserialize, Serialize)]
@@ -34,7 +35,8 @@ impl Default for Application {
     fn default() -> Self {
         Self {
             window_configuration: WindowConfiguration::default(),
-            language: Language::English,
+            language_configuration: LanguageConfiguration::default(),
+            language_code: get_browser_language_preference().unwrap_or(String::from("en-US")),
         }
     }
 }
@@ -42,6 +44,12 @@ impl Default for Application {
 impl Application {
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
         setup_fonts(cc);
+
+        let native_ppp = cc.egui_ctx.native_pixels_per_point().unwrap();
+        let new_ppp = native_ppp * 1.5;
+
+        cc.egui_ctx.set_pixels_per_point(new_ppp);
+        cc.egui_ctx.request_repaint();
 
         if let Some(storage) = cc.storage {
             return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();

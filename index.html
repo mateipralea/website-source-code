@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <head>
     <title>Matei Pralea</title>
 
-    <link data-trunk rel="rust" data-wasm-opt="2" />
-    <base data-trunk-public-url />
+    <link data-trunk rel="rust" data-wasm-opt="2"/>
+    <base data-trunk-public-url/>
 
-    <link data-trunk rel="copy-file" href="assets/sw.js" />
-    <link data-trunk rel="copy-file" href="assets/manifest.json" />
+    <link data-trunk rel="copy-file" href="assets/sw.js"/>
+    <link data-trunk rel="copy-file" href="assets/manifest.json"/>
 
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="assets/manifest.json">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#202020">
 
@@ -77,10 +77,8 @@
             display: block;
             width: 24px;
             height: 24px;
-            margin: 0px;
+            margin: 0;
             border-radius: 50%;
-            border: 3px solid #fff;
-            border-color: #fff transparent #fff transparent;
             animation: lds-dual-ring 1.2s linear infinite;
         }
 
@@ -97,19 +95,19 @@
 </head>
 
 <body>
-    <canvas id="main_canvas"></canvas>
+<canvas id="main_canvas"></canvas>
 
-    <div class="centered" id="loading_text">
-        <div class="lds-dual-ring"></div>
-    </div>
+<div class="centered" id="loading_text">
+    <div class="lds-dual-ring"></div>
+</div>
 
-    <script>
-        if ('serviceWorker' in navigator && window.location.hash !== "#dev") {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('sw.js');
-            });
-        }
-    </script>
+<script>
+    if ('serviceWorker' in navigator && window.location.hash !== "#dev") {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('sw.js');
+        });
+    }
+</script>
 </body>
 
 </html>

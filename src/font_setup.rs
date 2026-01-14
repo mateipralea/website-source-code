@@ -26,9 +26,7 @@ pub fn setup_fonts(cc: &eframe::CreationContext<'_>) {
 
     bold_font.tweak = tweak;
 
-    fonts
-        .font_data
-        .insert("Bold".to_owned(), bold_font.into());
+    fonts.font_data.insert("Bold".to_owned(), bold_font.into());
 
     fonts
         .families

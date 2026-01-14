@@ -3,7 +3,7 @@
 
 use eframe::egui;
 
-pub const COMPACT_THRESHOLD: f32 = 450.;
+pub const COMPACT_THRESHOLD: f32 = 496.;
 
 pub trait ExtraCtxImpl {
     fn toggle_compact(&self, compact: &mut bool);

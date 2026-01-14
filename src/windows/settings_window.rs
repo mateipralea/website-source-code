@@ -8,7 +8,7 @@ use eframe::egui;
 
 pub fn settings_window(app: &mut Application, ctx: &egui::Context) {
     let mut open = app.window_configuration.show_settings_window;
-    let window = egui::Window::new(app.language.settings())
+    let window = egui::Window::new(app.language_configuration.get_raw().settings())
         .id(egui::Id::new("settings_window"))
         .collapsible(false)
         .resizable(false)
@@ -17,7 +17,7 @@ pub fn settings_window(app: &mut Application, ctx: &egui::Context) {
         .min_size([400., 100.]);
     window.show(ctx, |ui| {
         ui.horizontal(|ui| {
-            ui.theme_combo_box(&app.language);
+            ui.theme_combo_box(&app.language_configuration.get_raw());
             ui.language_combo_box(app);
         });
     });

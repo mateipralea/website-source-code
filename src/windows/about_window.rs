@@ -7,7 +7,7 @@ use crate::extra_impl::extra_ui_impl::ExtraUiImpl;
 use eframe::egui;
 
 pub fn about_window(app: &mut Application, ctx: &egui::Context) {
-    egui::Window::new(app.language.about())
+    egui::Window::new(app.language_configuration.get_raw().about())
         .id(egui::Id::new("about_window"))
         .collapsible(false)
         .resizable(false)
@@ -15,11 +15,14 @@ pub fn about_window(app: &mut Application, ctx: &egui::Context) {
         .min_size([350., 220.])
         .open(&mut app.window_configuration.show_about_window)
         .show(ctx, |ui| {
-            ui.custom_heading(app.language.my_website());
+            ui.custom_heading(app.language_configuration.get_raw().my_website());
             let _ = ui.link("https://pralea.me");
             ui.separator();
 
-            ui.label(egui::RichText::new(app.language.license_information()).strong());
+            ui.label(
+                egui::RichText::new(app.language_configuration.get_raw().license_information())
+                    .strong(),
+            );
             ui.label("SPDX-License-Identifier: MIT OR Apache-2.0");
 
             ui.separator();
@@ -28,7 +31,7 @@ pub fn about_window(app: &mut Application, ctx: &egui::Context) {
                 format!(
                     "{} {}",
                     egui::special_emojis::GITHUB,
-                    app.language.website_source_code()
+                    app.language_configuration.get_raw().website_source_code()
                 ),
                 "https://github.com/mateipralea/website-source-code",
             );
