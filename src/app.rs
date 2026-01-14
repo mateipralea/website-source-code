@@ -3,9 +3,9 @@
 
 use eframe::egui;
 use serde::{Deserialize, Serialize};
-use std::collections::BTreeMap;
 
 use crate::extra_impl::extra_ctx_impl::ExtraCtxImpl;
+use crate::font_setup::setup_fonts;
 use crate::language::Language;
 use crate::windows::about_window::about_window;
 use crate::windows::main_window::main_window;
@@ -41,55 +41,7 @@ impl Default for Application {
 
 impl Application {
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
-        let mut fonts = egui::FontDefinitions::default();
-
-        let tweak = egui::FontTweak {
-            scale: 0.9,
-            ..Default::default()
-        };
-
-        let mut regular_font =
-            egui::FontData::from_static(include_bytes!("../assets/DINishExpanded-Regular.ttf"));
-
-        regular_font.tweak = tweak;
-
-        fonts
-            .font_data
-            .insert("DINishExpanded-Regular".to_owned(), regular_font.into());
-
-        let mut bold_font = egui::FontData::from_static(include_bytes!("../assets/DINishExpanded-Black.ttf"));
-
-        bold_font.tweak = tweak;
-
-        fonts
-            .font_data
-            .insert("DINishExpanded-Black".to_owned(), bold_font.into());
-
-        fonts
-            .families
-            .entry(egui::FontFamily::Proportional)
-            .or_default()
-            .insert(0, "DINishExpanded-Regular".to_owned());
-
-        let mut new_family = BTreeMap::new();
-
-        new_family.insert(
-            egui::FontFamily::Name("DINishExpanded-Black".into()),
-            vec!["DINishExpanded-Black".to_owned()],
-        );
-
-        fonts.families.append(&mut new_family);
-
-        cc.egui_ctx.set_fonts(fonts);
-
-        let mut style = (*cc.egui_ctx.style()).clone();
-
-        style.text_styles.insert(
-            egui::TextStyle::Heading,
-            egui::FontId::new(16.0, egui::FontFamily::Proportional),
-        );
-
-        cc.egui_ctx.set_style(style);
+        setup_fonts(cc);
 
         if let Some(storage) = cc.storage {
             return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
