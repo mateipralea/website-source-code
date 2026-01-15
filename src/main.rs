@@ -7,7 +7,6 @@ mod app;
 mod extra_impl;
 mod font_setup;
 mod language;
-mod scale_factor;
 mod windows;
 
 use app::Application;

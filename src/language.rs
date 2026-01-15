@@ -203,4 +203,11 @@ impl LanguageKind {
             LanguageKind::Romanian => "Setări",
         }
     }
+
+    pub fn detected_system_locale(&self) -> &'static str {
+        match self {
+            LanguageKind::English => "Detected system locale",
+            LanguageKind::Romanian => "Localizare de sistem detectată",
+        }
+    }
 }
