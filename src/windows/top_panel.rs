@@ -16,7 +16,7 @@ pub fn top_panel(app: &mut Application, ctx: &egui::Context) {
                 app.window_configuration.show_about_window.toggle();
             }
 
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Min), |ui| {
+            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 if ui
                     .button(app.language_configuration.get_raw().settings())
                     .clicked()
