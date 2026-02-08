@@ -41,18 +41,31 @@ fn language_combo_box(ui: &mut egui::Ui, app: &mut Application) {
                     LanguageConfiguration::System,
                     current_language.system(),
                 )
-                .on_hover_text(format!(
-                    "{}: {}",
-                    app.language_configuration
-                        .get_raw()
-                        .detected_system_locale(),
-                    app.language_code
-                ));
+                .on_hover_ui(|ui| {
+                    ui.horizontal(|ui| {
+                        ui.spacing_mut().item_spacing.x = 0.0;
+
+                        ui.label(format!(
+                            "{}: ",
+                            app.language_configuration
+                                .get_raw()
+                                .detected_system_locale(),
+                        ));
+
+                        ui.label(egui::RichText::new(format!("{}", app.language_code)).strong());
+                    });
+                });
 
                 ui.selectable_value(
                     &mut app.language_configuration,
                     LanguageConfiguration::Specified(LanguageKind::English),
                     LanguageKind::English.language_name(),
+                );
+
+                ui.selectable_value(
+                    &mut app.language_configuration,
+                    LanguageConfiguration::Specified(LanguageKind::German),
+                    LanguageKind::German.language_name(),
                 );
 
                 ui.selectable_value(

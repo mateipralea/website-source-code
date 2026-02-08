@@ -43,6 +43,7 @@ impl LanguageConfiguration {
 pub enum LanguageKind {
     English,
     Romanian,
+    German,
 }
 
 impl LanguageKind {
@@ -50,6 +51,8 @@ impl LanguageKind {
         let code = code.to_string();
         if code.starts_with("en") {
             Self::English
+        } else if code.starts_with("de") {
+            Self::German
         } else if code.starts_with("ro") {
             Self::Romanian
         } else {
@@ -57,10 +60,27 @@ impl LanguageKind {
         }
     }
 
+    pub fn my_pronouns_are(&self) -> &'static str {
+        match self {
+            Self::English => "My pronouns are",
+            Self::Romanian => "Pronumele mele sunt",
+            Self::German => "Meine Pronomen sind",
+        }
+    }
+
+    pub fn pronoun(&self) -> &'static str {
+        match self {
+            Self::English => "he/him",
+            Self::Romanian => "el/lui",
+            Self::German => "er/ihn",
+        }
+    }
+
     pub fn main_heading(&self) -> &'static str {
         match self {
-            LanguageKind::English => "Hello there!",
-            LanguageKind::Romanian => "Salutare!",
+            LanguageKind::English => "Hello!",
+            LanguageKind::Romanian => "Salut!",
+            LanguageKind::German => "Hallo!",
         }
     }
 
@@ -68,6 +88,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Language",
             LanguageKind::Romanian => "Limbă",
+            LanguageKind::German => "Sprache",
         }
     }
 
@@ -75,6 +96,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "English",
             LanguageKind::Romanian => "Română",
+            LanguageKind::German => "Deutsch",
         }
     }
 
@@ -82,6 +104,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "My Website",
             LanguageKind::Romanian => "Website-ul meu",
+            LanguageKind::German => "Meine Website",
         }
     }
 
@@ -89,6 +112,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "My name is",
             LanguageKind::Romanian => "Numele meu este",
+            LanguageKind::German => "Mein Name ist",
         }
     }
 
@@ -96,6 +120,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Show More About Me",
             LanguageKind::Romanian => "Arată mai multe despre mine",
+            LanguageKind::German => "Mehr über mich zeigen",
         }
     }
 
@@ -103,6 +128,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Show Less About Me",
             LanguageKind::Romanian => "Arată mai puține despre mine",
+            LanguageKind::German => "Weniger über mich zeigen",
         }
     }
 
@@ -110,6 +136,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "More About Me",
             LanguageKind::Romanian => "Mai multe despre mine",
+            LanguageKind::German => "Mehr über mich",
         }
     }
 
@@ -117,6 +144,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Website Source Code",
             LanguageKind::Romanian => "Codul sursă al website-ului",
+            LanguageKind::German => "Quellcode der Website",
         }
     }
 
@@ -124,6 +152,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "About",
             LanguageKind::Romanian => "Despre",
+            LanguageKind::German => "Über",
         }
     }
 
@@ -131,6 +160,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Theme",
             LanguageKind::Romanian => "Temă",
+            LanguageKind::German => "Theme",
         }
     }
 
@@ -138,6 +168,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Light",
             LanguageKind::Romanian => "Luminoasă",
+            LanguageKind::German => "Hell",
         }
     }
 
@@ -145,6 +176,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Dark",
             LanguageKind::Romanian => "Întunecată",
+            LanguageKind::German => "Dunkel",
         }
     }
 
@@ -152,6 +184,31 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "System",
             LanguageKind::Romanian => "De sistem",
+            LanguageKind::German => "System",
+        }
+    }
+
+    pub fn license_information(&self) -> &'static str {
+        match self {
+            LanguageKind::English => "License Information",
+            LanguageKind::Romanian => "Informații de licență",
+            LanguageKind::German => "Lizenzinformationen",
+        }
+    }
+
+    pub fn settings(&self) -> &'static str {
+        match self {
+            LanguageKind::English => "Settings",
+            LanguageKind::Romanian => "Setări",
+            LanguageKind::German => "Einstellungen",
+        }
+    }
+
+    pub fn detected_system_locale(&self) -> &'static str {
+        match self {
+            LanguageKind::English => "Detected system locale",
+            LanguageKind::Romanian => "Localizare de sistem detectată",
+            LanguageKind::German => "Erkannte System-Lokalisierung",
         }
     }
 
@@ -163,12 +220,17 @@ impl LanguageKind {
             LanguageKind::Romanian => {
                 "Am început să programez în 2020 cu C# și .NET, creând aplicații WinForms inițial ca pasiune. De atunci, mi-am extins competențele către limbaje precum JavaScript, Python, Swift, C și Rust, dezvoltând de la boți pentru Discord și aplicații iOS până la software de desktop cross-platform."
             }
+            LanguageKind::German => {
+                "Ich habe meine Reise in die Programmierung im Jahr 2020 mit C# und .NET begonnen, wobei ich hobbymäßig WinForms-Anwendungen entwickelt habe. Seitdem habe ich meine Kenntnisse auf Sprachen wie JavaScript, Python, Swift, C und Rust ausgeweitet und entwickle alles von Discord-Bots und iOS-Apps bis hin zu plattformübergreifender Desktop-Software."
+            }
         }
     }
+
     pub fn more_window_programming_tab(&self) -> &'static str {
         match self {
             LanguageKind::English => "Programming",
             LanguageKind::Romanian => "Programare",
+            LanguageKind::German => "Programmierung",
         }
     }
 
@@ -180,6 +242,9 @@ impl LanguageKind {
             LanguageKind::Romanian => {
                 "Dincolo de lumea programării, sunt fascinat de sisteme de gândire și îmi place să explorez concepte filosofice și să particip la dezbateri pe teme religioase dintr-o perspectivă laică. De asemenea, învăț activ limba germană și mă cufund în cultura sa remarcabil de bogată."
             }
+            LanguageKind::German => {
+                "Jenseits der Welt der Programmierung faszinieren mich Denksysteme und ich genieße es, philosophische Konzepte zu erforschen und an Debatten über Religion aus einer säkularen Perspektive teilzunehmen. Außerdem lerne ich aktiv die deutsche Sprache und tauche in ihre bemerkenswert reiche Kultur ein."
+            }
         }
     }
 
@@ -187,27 +252,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Other Interests",
             LanguageKind::Romanian => "Alte interese",
-        }
-    }
-
-    pub fn license_information(&self) -> &'static str {
-        match self {
-            LanguageKind::English => "License Information",
-            LanguageKind::Romanian => "Informații de licență",
-        }
-    }
-
-    pub fn settings(&self) -> &'static str {
-        match self {
-            LanguageKind::English => "Settings",
-            LanguageKind::Romanian => "Setări",
-        }
-    }
-
-    pub fn detected_system_locale(&self) -> &'static str {
-        match self {
-            LanguageKind::English => "Detected system locale",
-            LanguageKind::Romanian => "Localizare de sistem detectată",
+            LanguageKind::German => "Andere Interessen",
         }
     }
 }
