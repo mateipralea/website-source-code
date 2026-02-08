@@ -58,24 +58,24 @@ fn main_window_ui(app: &mut Application, ui: &mut egui::Ui) {
     if app.window_configuration.compact {
         ui.add_space(5.);
         let text = if app.window_configuration.show_more_window {
-            app.language_configuration.get_raw().show_less_about_me()
+            app.language_configuration.get_raw().less_about_me()
         } else {
-            app.language_configuration.get_raw().show_more_about_me()
+            app.language_configuration.get_raw().more_about_me()
         };
 
-        if ui.add_sized([185., 25.], egui::Button::new(text)).clicked() {
+        if ui.add_sized([150., 25.], egui::Button::new(text)).clicked() {
             app.window_configuration.show_more_window.toggle();
         }
     } else {
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Min), |ui| {
             ui.with_layout(egui::Layout::bottom_up(egui::Align::Max), |ui| {
                 let text = if app.window_configuration.show_more_window {
-                    app.language_configuration.get_raw().show_less_about_me()
+                    app.language_configuration.get_raw().less_about_me()
                 } else {
-                    app.language_configuration.get_raw().show_more_about_me()
+                    app.language_configuration.get_raw().more_about_me()
                 };
 
-                if ui.add_sized([185., 25.], egui::Button::new(text)).clicked() {
+                if ui.add_sized([150., 25.], egui::Button::new(text)).clicked() {
                     app.window_configuration.show_more_window.toggle();
                 }
             });

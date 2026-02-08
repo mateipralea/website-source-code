@@ -108,27 +108,19 @@ impl LanguageKind {
         }
     }
 
-    pub fn show_more_about_me(&self) -> &'static str {
-        match self {
-            LanguageKind::English => "Show More About Me",
-            LanguageKind::Romanian => "Arată mai multe despre mine",
-            LanguageKind::German => "Mehr über mich zeigen",
-        }
-    }
-
-    pub fn show_less_about_me(&self) -> &'static str {
-        match self {
-            LanguageKind::English => "Show Less About Me",
-            LanguageKind::Romanian => "Arată mai puține despre mine",
-            LanguageKind::German => "Weniger über mich zeigen",
-        }
-    }
-
     pub fn more_about_me(&self) -> &'static str {
         match self {
             LanguageKind::English => "More About Me",
             LanguageKind::Romanian => "Mai multe despre mine",
             LanguageKind::German => "Mehr über mich",
+        }
+    }
+
+    pub fn less_about_me(&self) -> &'static str {
+        match self {
+            LanguageKind::English => "Less About Me",
+            LanguageKind::Romanian => "Mai puține despre mine",
+            LanguageKind::German => "Weniger über mich",
         }
     }
 
