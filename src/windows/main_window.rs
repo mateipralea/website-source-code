@@ -30,20 +30,7 @@ fn main_window_ui(app: &mut Application, ui: &mut egui::Ui) {
             "{} ",
             app.language_configuration.get_raw().my_name_is()
         ));
-        ui.label(egui::RichText::new("Matei Pralea.").strong())
-            .on_hover_ui(|ui| {
-                ui.horizontal(|ui| {
-                    ui.spacing_mut().item_spacing.x = 0.0;
-                    ui.label(app.language_configuration.get_raw().my_pronouns_are());
-                    ui.label(
-                        egui::RichText::new(format!(
-                            " {}.",
-                            app.language_configuration.get_raw().pronoun()
-                        ))
-                        .strong(),
-                    );
-                });
-            });
+        ui.label(egui::RichText::new("Matei Pralea.").strong());
 
         ui.add_space(5.);
 
