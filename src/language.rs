@@ -60,6 +60,14 @@ impl LanguageKind {
         }
     }
 
+    pub fn my_pronouns_are(&self) -> &'static str {
+        match self {
+            Self::English => "My pronouns are",
+            Self::Romanian => "Pronumele mele sunt",
+            Self::German => "Meine Pronomen sind",
+        }
+    }
+
     pub fn pronoun(&self) -> &'static str {
         match self {
             Self::English => "he/him",
@@ -144,7 +152,7 @@ impl LanguageKind {
         match self {
             LanguageKind::English => "Theme",
             LanguageKind::Romanian => "Temă",
-            LanguageKind::German => "Theme",
+            LanguageKind::German => "Design",
         }
     }
 

@@ -30,30 +30,28 @@ fn main_window_ui(app: &mut Application, ui: &mut egui::Ui) {
             "{} ",
             app.language_configuration.get_raw().my_name_is()
         ));
-        ui.label(egui::RichText::new("Matei Pralea.").strong());
-
-        ui.add_space(5.);
-
-        ui.label(
-            egui::RichText::new(format!(
-                "({})",
-                app.language_configuration.get_raw().pronoun()
-            ))
-            .small_raised(),
-        );
+        ui.label(egui::RichText::new("Matei Pralea.").strong())
+            .on_hover_ui(|ui| {
+                ui.horizontal(|ui| {
+                    ui.spacing_mut().item_spacing.x = 0.0;
+                    ui.label(app.language_configuration.get_raw().my_pronouns_are());
+                    ui.add_space(3.);
+                    ui.label(
+                        egui::RichText::new(format!(
+                            "{}.",
+                            app.language_configuration.get_raw().pronoun()
+                        ))
+                        .strong(),
+                    );
+                });
+            });
     });
 
     ui.add_space(2.);
-    ui.horizontal(|ui| {
-        ui.hyperlink_to(
-            format!("{} GitHub", egui::special_emojis::GITHUB),
-            "https://github.com/mateipralea",
-        );
-
-        ui.label(egui::RichText::new("•").strong());
-
-        ui.hyperlink_to("Instagram", "https://instagram.com/mateipralea");
-    });
+    ui.hyperlink_to(
+        format!("{} github.com/mateipralea", egui::special_emojis::GITHUB),
+        "https://github.com/mateipralea",
+    );
 
     if app.window_configuration.compact {
         ui.add_space(5.);
