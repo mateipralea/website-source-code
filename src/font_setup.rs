@@ -15,7 +15,7 @@ pub fn setup_fonts(cc: &eframe::CreationContext<'_>) {
     let mut regular_font =
         egui::FontData::from_static(include_bytes!("../assets/DINishExpanded-Regular.ttf"));
 
-    regular_font.tweak = tweak;
+    regular_font.tweak = tweak.clone();
 
     fonts
         .font_data
@@ -45,12 +45,12 @@ pub fn setup_fonts(cc: &eframe::CreationContext<'_>) {
 
     cc.egui_ctx.set_fonts(fonts);
 
-    let mut style = (*cc.egui_ctx.style()).clone();
+    let mut style = (*cc.egui_ctx.global_style()).clone();
 
     style.text_styles.insert(
         egui::TextStyle::Heading,
         egui::FontId::new(16.0, egui::FontFamily::Proportional),
     );
 
-    cc.egui_ctx.set_style(style);
+    cc.egui_ctx.set_global_style(style);
 }

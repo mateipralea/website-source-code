@@ -13,7 +13,7 @@ pub enum MoreWindowTab {
     OtherInterests,
 }
 
-pub fn more_window(app: &mut Application, ctx: &egui::Context) {
+pub fn more_window(app: &mut Application, ui: &mut egui::Ui) {
     egui::Window::new(app.language_configuration.get_raw().more_about_me())
         .id(egui::Id::new("more_window"))
         .collapsible(false)
@@ -21,7 +21,7 @@ pub fn more_window(app: &mut Application, ctx: &egui::Context) {
         .open(&mut app.window_configuration.show_more_window)
         .fixed_size([300., 100.])
         .min_size([300., 100.])
-        .show(ctx, |ui| {
+        .show(ui, |ui| {
             ui.horizontal(|ui| {
                 if ui
                     .selectable_label(

@@ -6,7 +6,7 @@ use crate::language::{LanguageConfiguration, LanguageKind};
 
 use eframe::egui;
 
-pub fn settings_window(app: &mut Application, ctx: &egui::Context) {
+pub fn settings_window(app: &mut Application, ui: &mut egui::Ui) {
     let mut open = app.window_configuration.show_settings_window;
     let window = egui::Window::new(app.language_configuration.get_raw().settings())
         .id(egui::Id::new("settings_window"))
@@ -15,7 +15,7 @@ pub fn settings_window(app: &mut Application, ctx: &egui::Context) {
         .open(&mut open)
         .fixed_size([400., 100.])
         .min_size([400., 100.]);
-    window.show(ctx, |ui| {
+    window.show(ui, |ui| {
         ui.horizontal(|ui| {
             theme_combo_box(ui, &app.language_configuration.get_raw());
             language_combo_box(ui, app);

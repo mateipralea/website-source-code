@@ -7,9 +7,9 @@ use crate::extra_impl::extra_ui_impl::ExtraUiImpl;
 
 use eframe::egui;
 
-pub fn main_window(app: &mut Application, ctx: &egui::Context) {
+pub fn main_window(app: &mut Application, ui: &mut egui::Ui) {
     if app.window_configuration.compact {
-        egui::CentralPanel::default().show(ctx, |ui| main_window_ui(app, ui));
+        egui::CentralPanel::default().show_inside(ui, |ui| main_window_ui(app, ui));
     } else {
         egui::Window::new(app.language_configuration.get_raw().my_website())
             .id(egui::Id::new("main_window"))
@@ -17,7 +17,7 @@ pub fn main_window(app: &mut Application, ctx: &egui::Context) {
             .resizable(false)
             .fixed_size([300., 105.])
             .min_size([300., 105.])
-            .show(ctx, |ui| main_window_ui(app, ui));
+            .show(ui, |ui| main_window_ui(app, ui));
     }
 }
 

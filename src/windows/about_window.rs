@@ -6,7 +6,7 @@ use crate::extra_impl::extra_ui_impl::ExtraUiImpl;
 
 use eframe::egui;
 
-pub fn about_window(app: &mut Application, ctx: &egui::Context) {
+pub fn about_window(app: &mut Application, ui: &mut egui::Ui) {
     egui::Window::new(app.language_configuration.get_raw().about())
         .id(egui::Id::new("about_window"))
         .collapsible(false)
@@ -14,7 +14,7 @@ pub fn about_window(app: &mut Application, ctx: &egui::Context) {
         .fixed_size([350., 220.])
         .min_size([350., 220.])
         .open(&mut app.window_configuration.show_about_window)
-        .show(ctx, |ui| {
+        .show(ui, |ui| {
             ui.custom_heading(app.language_configuration.get_raw().my_website());
             let _ = ui.link("https://pralea.me");
             ui.separator();

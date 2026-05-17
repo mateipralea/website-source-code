@@ -6,8 +6,8 @@ use crate::extra_impl::bool_ext::BoolExt;
 
 use eframe::egui;
 
-pub fn top_panel(app: &mut Application, ctx: &egui::Context) {
-    egui::TopBottomPanel::top("top").show(ctx, |ui| {
+pub fn top_panel(app: &mut Application, ui: &mut egui::Ui) {
+    egui::Panel::top("top").show_inside(ui, |ui| {
         egui::MenuBar::new().ui(ui, |ui| {
             if ui
                 .button(app.language_configuration.get_raw().about())

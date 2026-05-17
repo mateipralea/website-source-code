@@ -60,22 +60,24 @@ impl Application {
 }
 
 impl eframe::App for Application {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         ctx.toggle_compact(&mut self.window_configuration.compact);
+    }
 
-        top_panel(self, ctx);
-        main_window(self, ctx);
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        top_panel(self, ui);
+        main_window(self, ui);
 
         if self.window_configuration.show_more_window {
-            more_window(self, ctx);
+            more_window(self, ui);
         }
 
         if self.window_configuration.show_settings_window {
-            settings_window(self, ctx);
+            settings_window(self, ui);
         }
 
         if self.window_configuration.show_about_window {
-            about_window(self, ctx);
+            about_window(self, ui);
         }
     }
 
